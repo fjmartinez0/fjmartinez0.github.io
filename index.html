@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fernando Martinez · Projects</title>
+<meta name="description" content="Live projects by Fernando Martinez: pricing intelligence, travel and market trackers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f7f5;
+    --surface: #ffffff;
+    --text: #16181d;
+    --muted: #5d6470;
+    --border: #e3e4e8;
+    --accent: #2f6fed;
+    --accent-soft: #e8efff;
+    --shadow: 0 1px 2px rgba(16,24,40,.04), 0 4px 16px rgba(16,24,40,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1115;
+      --surface: #171a21;
+      --text: #eceef2;
+      --muted: #9aa1ad;
+      --border: #262a33;
+      --accent: #6b9bff;
+      --accent-soft: #1c2740;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 4px 16px rgba(0,0,0,.25);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 64px 20px 48px; }
+  header { margin-bottom: 40px; }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px; color: var(--accent); letter-spacing: .02em;
+  }
+  h1 { font-size: clamp(28px, 5vw, 40px); font-weight: 700; letter-spacing: -.02em; margin: 6px 0 10px; }
+  .lede { color: var(--muted); max-width: 560px; font-size: 17px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    display: flex; flex-direction: column; gap: 12px;
+    box-shadow: var(--shadow);
+    transition: transform .15s ease, border-color .15s ease;
+  }
+  .card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .top { display: flex; align-items: center; gap: 12px; }
+  .icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--accent-soft); color: var(--accent);
+    display: grid; place-items: center; font-size: 20px; flex-shrink: 0;
+  }
+  .card h2 { font-size: 17px; font-weight: 600; }
+  .tag {
+    font-family: "JetBrains Mono", monospace; font-size: 11px;
+    color: var(--muted);
+  }
+  .card p { color: var(--muted); font-size: 14.5px; flex: 1; }
+  .links { display: flex; gap: 8px; }
+  .btn {
+    font-size: 14px; font-weight: 500; text-decoration: none;
+    padding: 8px 14px; border-radius: 8px;
+  }
+  .btn.primary { background: var(--accent); color: #fff; }
+  .btn.primary:hover { filter: brightness(1.08); }
+  .btn.ghost { color: var(--muted); border: 1px solid var(--border); }
+  .btn.ghost:hover { color: var(--text); }
+  footer {
+    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
+    color: var(--muted); font-size: 14px;
+    display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between;
+  }
+  footer a { color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">fjmartinez0.github.io</div>
+    <h1>Fernando Martinez</h1>
+    <p class="lede">Data tools I build and run: pricing intelligence, travel and market trackers. Each one is live below.</p>
+  </header>
+
+  <main class="grid" id="projects"></main>
+
+  <footer>
+    <span>Montreal</span>
+    <a href="https://github.com/fjmartinez0">github.com/fjmartinez0</a>
+  </footer>
+</div>
+
+<script>
+  // Edit names, descriptions and icons here. "repo" must match the GitHub repo name exactly.
+  const USER = "fjmartinez0";
+  const projects = [
+    { repo: "pricing-intel",     name: "Pricing Intelligence", icon: "📊", tag: "Python",
+      desc: "Competitive pricing analysis and market insights." },
+    { repo: "pricing_desk",      name: "Pricing Desk",         icon: "🧮", tag: "Python",
+      desc: "Working desk for monitoring and managing prices." },
+    { repo: "airbnb_explorer",   name: "Airbnb Explorer",      icon: "🏠", tag: "HTML",
+      desc: "Explore Airbnb listings, prices and neighbourhoods." },
+    { repo: "flight-tracker",    name: "Flight Tracker",       icon: "✈️", tag: "HTML",
+      desc: "Track flight fares and routes over time." },
+    { repo: "ps5_games_tracker", name: "PS5 Games Tracker",    icon: "🎮", tag: "Python",
+      desc: "Price and deal tracking for PS5 games." },
+    { repo: "sentinel",          name: "Sentinel",             icon: "🛰️", tag: "HTML",
+      desc: "Monitoring dashboard with alerts." }
+  ];
+
+  const grid = document.getElementById("projects");
+  for (const p of projects) {
+    const el = document.createElement("article");
+    el.className = "card";
+    el.innerHTML = `
+      <div class="top">
+        <div class="icon" aria-hidden="true">${p.icon}</div>
+        <div><h2>${p.name}</h2><div class="tag">${p.tag}</div></div>
+      </div>
+      <p>${p.desc}</p>
+      <div class="links">
+        <a class="btn primary" href="https://${USER}.github.io/${p.repo}/">Open app</a>
+        <a class="btn ghost" href="https://github.com/${USER}/${p.repo}">Code</a>
+      </div>`;
+    grid.appendChild(el);
+  }
+</script>
+</body>
+</html>
