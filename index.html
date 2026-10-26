@@ -122,7 +122,10 @@
     { repo: "ps5_games_tracker", name: "PS5 Games Tracker",    icon: "🎮", tag: "Python",
       desc: "Price and deal tracking for PS5 games." },
     { repo: "sentinel",          name: "Sentinel",             icon: "🛰️", tag: "HTML",
-      desc: "Monitoring dashboard with alerts." }
+      desc: "Monitoring dashboard with alerts." },
+    { repo: "proyecto_vivienda_colombia", name: "Vivienda Colombia", icon: "🏘️", tag: "HTML",
+      path: "web/",   // the live app lives in the /web/ subfolder
+      desc: "Housing market analysis for Colombia." }
   ];
 
   const grid = document.getElementById("projects");
@@ -136,7 +139,7 @@
       </div>
       <p>${p.desc}</p>
       <div class="links">
-        <a class="btn primary" href="https://${USER}.github.io/${p.repo}/">Open app</a>
+        <a class="btn primary" href="https://${USER}.github.io/${p.repo}/${p.path || ""}">Open app</a>
         <a class="btn ghost" href="https://github.com/${USER}/${p.repo}">Code</a>
       </div>`;
     grid.appendChild(el);
